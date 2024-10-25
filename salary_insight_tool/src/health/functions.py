@@ -4,7 +4,7 @@ def audit():
     import sys
     
     try:
-        cds_df = pd.read_csv("data/input/candidate_desired_salary.csv")
+        cds_df = pd.read_csv("data/input/candidate_desired_salary.csv", low_memory=False)
         usd_conv_df = pd.read_csv("data/reference/usd_conversion_table.csv") 
         ctry_conv_df = pd.read_csv("data/reference/country_conversion_table.csv") 
     except:

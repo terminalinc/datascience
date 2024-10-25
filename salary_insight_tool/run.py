@@ -6,10 +6,11 @@ from src.health.functions import *
 def run_tool():
     import pandas as pd
     
-    cds_df = pd.read_csv('data/input/candidate_desired_salary.csv')
-    
     # Perform system check
     audit()
+    
+    # Load data
+    cds_df = pd.read_csv('data/input/candidate_desired_salary.csv', low_memory=False)
     
     # Clean up and save Candidate Desired Salary data
     preprocess_cds_df(cds_df)
