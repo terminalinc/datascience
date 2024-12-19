@@ -9,6 +9,9 @@
 - The tool will run for a few minutes and give updates at each stage. You can ignore any warning messages that occur as the tool runs. 
 - The salary estimates will be outputted in the following directory: `data/output/salary_est.csv.`
 
+**Input Data Setup commands:**
+mkdir -p data/input/candidate data/input/members data/input/job
+
 **Troubleshooting:**
 - If you receive an error message regarding missing files, insufficient rows or missing columns, check the following directories for any issues:
     -- `data/input/candidate_desired_salary.csv`

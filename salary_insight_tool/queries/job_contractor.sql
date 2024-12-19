@@ -1,3 +1,5 @@
+-- Save as 'data\input\job\job_contractor.csv'
+
 SELECT
  *
 FROM (

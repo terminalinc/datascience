@@ -1,3 +1,5 @@
+-- Save as 'data\input\candidate\desired_role.csv'
+
 SELECT
  candidate_role.candidate_id,
  role_choices.name AS desired_role,

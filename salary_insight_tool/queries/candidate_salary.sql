@@ -1,3 +1,5 @@
+-- Save as 'data\input\candidate\candidate_salary.csv'
+
 SELECT
  *
 FROM (

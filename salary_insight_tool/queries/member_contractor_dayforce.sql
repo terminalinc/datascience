@@ -1,3 +1,5 @@
+-- Save as 'data\input\member\member_contractor_dayforce.csv'
+
 SELECT
 EmploymentStatuses.employeeXRefCode,
 EmploymentStatuses.EffectiveStart,
