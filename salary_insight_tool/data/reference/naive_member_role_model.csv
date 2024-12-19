@@ -1,0 +1,28 @@
+﻿word,column,value
+frontend,n_role,Frontend
+full stack,n_role,Full Stack
+mobile,n_role,Mobile
+android,n_role,Mobile
+data analyst,n_role,Data Analyst
+data science,n_role,Data Science
+scientist,n_role,Data Science
+ios,n_role,Mobile
+nlp,n_role,AI/ML
+machine learning,n_role,AI/ML
+full stack,n_role,Full Stack
+backend,n_role,Backend
+designer,n_role,Designer
+data engineering,n_role,Data Engineer
+data scientist,n_role,Data Science
+devops,n_role,DevOps
+data engineer,n_role,Data Engineer
+front-end,n_role,Frontend
+project manager,pass,1
+recruiter,pass,1
+director,pass,1
+head,pass,1
+manager,pass,1
+vp,pass,1
+manual,n_role,Manual QA
+qa automation,n_role,Automation QA
+qa engin,n_role,Automation QA

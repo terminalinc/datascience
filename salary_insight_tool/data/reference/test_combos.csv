@@ -1,0 +1,27 @@
+﻿country,role,level,employment_type,region
+Canada,Full Stack,L4,full_time,north_america
+Mexico,Full Stack,L3,full_time,latin_america
+Canada,Backend,L4,full_time,north_america
+Canada,Full Stack,L3,full_time,north_america
+Mexico,Backend,L4,full_time,latin_america
+Mexico,Backend,L3,full_time,latin_america
+Colombia,Full Stack,L4,full_time,latin_america
+Canada,Frontend,L4,full_time,north_america
+Mexico,Frontend,L4,full_time,latin_america
+Canada,Backend,L3,full_time,north_america
+Mexico,Full Stack,L4,full_time,latin_america
+Colombia,Backend,L4,full_time,latin_america
+Canada,Frontend,L3,full_time,north_america
+Colombia,Full Stack,L3,full_time,latin_america
+Canada,Backend,L5,full_time,north_america
+Chile,Full Stack,L4,full_time,latin_america
+Canada,Full Stack,L5,full_time,north_america
+Colombia,Mobile,L3,full_time,latin_america
+Colombia,Full Stack,L3,contract,latin_america
+Mexico,Full Stack,L3,contract,latin_america
+Costa Rica,Full Stack,L4,full_time,latin_america
+Canada,Full Stack,L3,contract,north_america
+Mexico,Full Stack,L4,contract,latin_america
+Colombia,Backend,L3,contract,latin_america
+Mexico,Backend,L3,contract,latin_america
+Colombia,Full Stack,L4,contract,latin_america

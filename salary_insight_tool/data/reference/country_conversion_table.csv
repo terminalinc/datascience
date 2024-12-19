@@ -1,129 +1,129 @@
-country,country_clean
-Albania,Albania
-Algérie,Algeria
-Algeria,Algeria
-Argentina,Argentina
-Armenia,Armenia
-Australia,Australia
-Austria,Austria
-Azerbaijan,Azerbaijan
-Bangladesh,Bangladesh
-Belarus,Belarus
-Belgium,Belgium
-Belize,Belize
-Bolivia,Bolivia
-Brasil,Brazil
-Brazil,Brazil
-Bulgaria,Bulgaria
-Cameroon,Cameroon
-Canada,Canada
-Canadá,Canada
-Chile,Chile
-China,China
-Colombia,Colombia
-Columbia,Colombia
-Costa Rica,Costa Rica
-Croatia,Croatia
-Cuba,Cuba
-Czechia,Czechia
-Democratic Republic of the Congo,Democratic Republic of the Congo
-Denmark,Denmark
-Deutschland,Deutschland
-Dominican Republic,Dominican Republic
-Ecuador,Ecuador
-Egypt,Egypt
-El Salvador,El Salvador
-Estados Unidos,Estados Unidos
-Estonia,Estonia
-Ethiopia,Ethiopia
-Finland,Finland
-France,France
-Georgia,Georgia
-Germany,Germany
-Ghana,Ghana
-Greece,Greece
-Guatemala,Guatemala
-Guyana,Guyana
-Honduras,Honduras
-Hong Kong,Hong Kong
-Hungary,Hungary
-India,India
-Indonesia,Indonesia
-Iran,Iran
-Iraq,Iraq
-Ireland,Ireland
-Israel,Israel
-Italia,Italia
-Italy,Italy
-Jamaica,Jamaica
-Japan,Japan
-Jordan,Jordan
-Kenya,Kenya
-Kyrgyzstan,Kyrgyzstan
-Latvia,Latvia
-Lebanon,Lebanon
-Lithuania,Lithuania
-México,Mexico
-Madagascar,Madagascar
-Magyarország,Hungary
-Malawi,Malawi
-Malaysia,Malaysia
-Malta,Malta
-Maroc,Morocco
-Mauritius,Mauritius
-Mexico,Mexico
-Moldova,Moldova
-Morocco,Morocco
-Nepal,Nepal
-Netherlands,Netherlands
-New Zealand,New Zealand
-Nicaragua,Nicaragua
-Nigeria,Nigeria
-Norge,Norway
-North Macedonia,North Macedonia
-Norway,Norway
-Pakistan,Pakistan
-Palestine,Palestine
-Panama,Panama
-Panamá,Panama
-Paraguay,Paraguay
-Perú,Peru
-Peru,Peru
-Philippines,Philippines
-Poland,Poland
-Polska,Poland
-Portugal,Portugal
-Puerto Rico,Puerto Rico
-República Dominicana,Dominican Republic
-România,Romania
-Romania,Romania
-Russia,Russia
-Rwanda,Rwanda
-Saudi Arabia,Saudi Arabia
-Serbia,Serbia
-Singapore,Singapore
-South Africa,South Africa
-South Korea,South Korea
-Spain,Spain
-Sri Lanka,Sri Lanka
-Sverige,Sweden
-Sweden,Sweden
-Switzerland,Switzerland
-Türkiye,Turkey
-Taiwan,Taiwan
-Thailand,Thailand
-Togo,Togo
-Tunisia,Tunisia
-Tunisie,Tunisia
-Turkey,Turkey
-Uganda,Uganda
-Ukraine,Ukraine
-United Arab Emirates,United Arab Emirates
-United Kingdom,United Kingdom
-United States,United States
-Uruguay,Uruguay
-USA,United States
-Uzbekistan,Uzbekistan
-Venezuela,Venezuela
-Vietnam,Vietnam
-Zimbabwe,Zimbabwe
+country,country_clean,member_country_code,currency
+Albania,Albania,ALB,ALL
+Algérie,Algeria,,DZD
+Algeria,Algeria,DZA,DZD
+Argentina,Argentina,ARG,ARS
+Armenia,Armenia,ARM,AMD
+Australia,Australia,AUS,AUD
+Austria,Austria,AUT,EUR
+Azerbaijan,Azerbaijan,AZE,AZN
+Bangladesh,Bangladesh,BGD,BDT
+Belarus,Belarus,BLR,BYN
+Belgium,Belgium,BEL,EUR
+Belize,Belize,BLZ,BZD
+Bolivia,Bolivia,BOL,BOB
+Brasil,Brazil,,BRL
+Brazil,Brazil,BRA,BRL
+Bulgaria,Bulgaria,BGR,BGN
+Cameroon,Cameroon,CMR,XAF
+Canada,Canada,CAN,CAD
+Canadá,Canada,,CAD
+Chile,Chile,CHL,CLP
+China,China,CHN,CNY
+Colombia,Colombia,COL,COP
+Columbia,Colombia,,COP
+Costa Rica,Costa Rica,CRI,CRC
+Croatia,Croatia,HRV,EUR
+Cuba,Cuba,CUB,CUP
+Czechia,Czechia,,CZK
+Democratic Republic of the Congo,Democratic Republic of the Congo,,CDF
+Denmark,Denmark,DNK,DKK
+Deutschland,Deutschland,,DKK
+Dominican Republic,Dominican Republic,DOM,DOP
+Ecuador,Ecuador,ECU,USD
+Egypt,Egypt,,EGP
+El Salvador,El Salvador,SLV,USD
+Estados Unidos,Estados Unidos,,ERN
+Estonia,Estonia,EST,EUR
+Ethiopia,Ethiopia,,ETB
+Finland,Finland,FIN,EUR
+France,France,FRA,EUR
+Georgia,Georgia,GEO,GEL
+Germany,Germany,DEU,EUR
+Ghana,Ghana,GHA,GHS
+Greece,Greece,GRC,EUR
+Guatemala,Guatemala,GTM,GTQ
+Guyana,Guyana,GUY,GYD
+Honduras,Honduras,HND,HNL
+Hong Kong,Hong Kong,,HNL
+Hungary,Hungary,HUN,HUF
+India,India,IND,INR
+Indonesia,Indonesia,IDN,IDR
+Iran,Iran,,IRR
+Iraq,Iraq,IRQ,IQD
+Ireland,Ireland,IRL,EUR
+Israel,Israel,ISR,ILS
+Italia,Italia,,ILS
+Italy,Italy,ITA,EUR
+Jamaica,Jamaica,JAM,JMD
+Japan,Japan,JPN,JPY
+Jordan,Jordan,JOR,JOD
+Kenya,Kenya,KEN,KES
+Kyrgyzstan,Kyrgyzstan,,KGS
+Latvia,Latvia,LVA,EUR
+Lebanon,Lebanon,LBN,LBP
+Lithuania,Lithuania,LTU,EUR
+México,Mexico,,MXN
+Madagascar,Madagascar,MDG,MGA
+Magyarország,Hungary,,HUF
+Malawi,Malawi,MWI,MWK
+Malaysia,Malaysia,MYS,MYR
+Malta,Malta,MLT,EUR
+Maroc,Morocco,,MAD
+Mauritius,Mauritius,MUS,MUR
+Mexico,Mexico,MEX,MXN
+Moldova,Moldova,MDA,MDL
+Morocco,Morocco,MAR,MAD
+Nepal,Nepal,NPL,NPR
+Netherlands,Netherlands,NLD,EUR
+New Zealand,New Zealand,NZL,NZD
+Nicaragua,Nicaragua,NIC,NIO
+Nigeria,Nigeria,NGA,NGN
+Norge,Norway,,NOK
+North Macedonia,North Macedonia,,MKD
+Norway,Norway,NOR,NOK
+Pakistan,Pakistan,PAK,PKR
+Palestine,Palestine,,ILS
+Panama,Panama,PAN,USD
+Panamá,Panama,,USD
+Paraguay,Paraguay,PRY,PYG
+Perú,Peru,,PEN
+Peru,Peru,PER,PEN
+Philippines,Philippines,PHL,PHP
+Poland,Poland,POL,PLN
+Polska,Poland,,PLN
+Portugal,Portugal,PRT,EUR
+Puerto Rico,Puerto Rico,PRI,EUR
+República Dominicana,Dominican Republic,,DOP
+România,Romania,,RON
+Romania,Romania,ROM,RON
+Russia,Russia,,RUB
+Rwanda,Rwanda,RWA,RWF
+Saudi Arabia,Saudi Arabia,SAU,SAR
+Serbia,Serbia,,RSD
+Singapore,Singapore,SGP,SGD
+South Africa,South Africa,ZAF,ZAR
+South Korea,South Korea,,KRW
+Spain,Spain,ESP,EUR
+Sri Lanka,Sri Lanka,LKA,LKR
+Sverige,Sweden,,SEK
+Sweden,Sweden,SWE,SEK
+Switzerland,Switzerland,CHE,CHF
+Türkiye,Turkey,,TRY
+Taiwan,Taiwan,TWN,TWD
+Thailand,Thailand,THA,THB
+Togo,Togo,TGO,XOF
+Tunisia,Tunisia,TUN,TND
+Tunisie,Tunisia,,TND
+Turkey,Turkey,TUR,TRY
+Uganda,Uganda,UGA,UGX
+Ukraine,Ukraine,UKR,UAH
+United Arab Emirates,United Arab Emirates,ARE,AED
+United Kingdom,United Kingdom,GBR,GBP
+United States,United States,USA,GBP
+Uruguay,Uruguay,URY,UYU
+USA,United States,,GBP
+Uzbekistan,Uzbekistan,UZB,UZS
+Venezuela,Venezuela,VEN,VES
+Vietnam,Vietnam,VNM,VND
+Zimbabwe,Zimbabwe,ZWE,USD

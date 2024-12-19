@@ -29,7 +29,7 @@ def audit():
         sys.exit('Candidate Desired Salary table missing key columns')
     
 
-    usd_conv_columns = ['desired_salary_currency', 'currency_name', 'usd_per_unit', 'location']
+    usd_conv_columns = ['desired_salary_currency', 'currency_name', 'usd_per_unit', 'country_clean']
     if len(set(usd_conv_columns) - set(usd_conv_df.columns)) != 0:
         sys.exit('USD conversion table missing key columns')
         
