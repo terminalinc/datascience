@@ -5,6 +5,7 @@ from src.preprocess.combo_reference_df import *
 from src.analytics.skill_analysis import *
 from src.analytics.histogram_dist_generator import *
 from src.prediction.true_salary_estimation import *
+from src.prediction.refine_salary_estimate import *
 from src.prediction.salary_prediction import *
 
 def run_tool():
@@ -33,16 +34,18 @@ def run_tool():
     global_outlier_range(salary_df)
     construct_salary_model(salary_df)
     
-    # # Generate the salary estimates
+    # Generate the salary estimates
     salary_estimates_raw = compile_salary_results()
-    salary_estimates_raw[['L', 'M', 'U', 'figure_data']] = salary_estimates_raw.apply(salary_est, axis = 1, result_type='expand')    
+    salary_estimates_raw[['L', 'M', 'U', 'figure_data', 'n', 'confidence']] = salary_estimates_raw.apply(salary_est, axis = 1, result_type='expand')    
         
+    # Refine Salary Estimates
+    salary_estimates_raw = refine_salary(salary_estimates_raw)
+    
     # Generate salary histograms
     histogram_dist_generation(salary_estimates_raw)
     
     # # Identify common & trending skills per role
     skills_analysis()
-    
     
 if __name__ == '__main__':
     run_tool()

@@ -5,7 +5,7 @@ def transform_hist_data(row):
     figure_data = pd.Series(row['figure_data'])
     og_median = np.median(figure_data)
     
-    target_median = row['M']
+    target_median = row['M_adjusted']
     modifier = 1 + (target_median - og_median) / og_median
     transformed_data =  list(figure_data * modifier)
     
@@ -75,7 +75,11 @@ def histogram_dist_generation(salary_estimates_raw):
                                      + salary_estimates_raw['job_n']
                                      + salary_estimates_raw['mem_n'])
     
-    salary_estimates_raw.to_csv("data/output/salary_estimates.csv", index = False)
+    salary_estimates = salary_estimates_raw[['country', 'role', 'level', 'employment_type', 
+                                             'yoe', 'job_level','n', 'confidence', 'M_adjusted', 
+                                            'hist_bin_1','hist_bin_2', 'hist_bin_3', 'hist_bin_4', 
+                                            'hist_bin_5', 'hist_bin_6','hist_bin_7', 'hist_bin_8']]
+    
+    salary_estimates.to_csv("data/output/salary_estimates.csv", index = False)
     print('Salary Estimates Stored: data/output/salary_estimates.csv')
-
 
