@@ -38,7 +38,6 @@ def histogram_dist_generation(salary_estimates_raw):
 
     salary_estimates_raw['transformed_data'] = salary_estimates_raw.apply(transform_hist_data, axis = 1)
     
-    
     salary_estimates_raw['hist_bin_1'] = (salary_estimates_raw['transformed_data']
                                           .apply(lambda y : len(list(filter(
                                               lambda x : (x > lb_a) & (x <= lb_b), y)))))

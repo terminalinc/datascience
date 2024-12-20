@@ -36,7 +36,7 @@ def run_tool():
     
     # Generate the salary estimates
     salary_estimates_raw = compile_salary_results()
-    salary_estimates_raw[['L', 'M', 'U', 'figure_data', 'n', 'confidence']] = salary_estimates_raw.apply(salary_est, axis = 1, result_type='expand')    
+    salary_estimates_raw[['M', 'figure_data', 'n', 'confidence']] = salary_estimates_raw.apply(salary_est, axis = 1, result_type='expand')    
         
     # Refine Salary Estimates
     salary_estimates_raw = refine_salary(salary_estimates_raw)
