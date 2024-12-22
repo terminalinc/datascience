@@ -11,9 +11,6 @@ from src.prediction.salary_prediction import *
 def run_tool():
     import pandas as pd
     
-    # Perform system check
-    #audit()
-    
     # # Clean up and save Candidate Desired Salary data
     id_new_candidate_ids()
     process_candidate_data()

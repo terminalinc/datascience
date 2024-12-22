@@ -61,8 +61,6 @@ def refine_salary(salary_estimates_raw):
     country_mod_est = country_mod_est[['country', 'mod_perc_country_macro']]
     se_ss = se_ss.merge(country_mod_est, on = ['country'], how = 'left')
     
-    
-    
     se_ss['per_adjust'] = (se_ss['mod_perc_level_macro'] + se_ss['mod_perc_level_micro'])/2
     
     se_ss['M_adjusted'] = (1 + se_ss['per_adjust']) * se_ss['M']

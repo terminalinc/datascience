@@ -3,14 +3,16 @@ def transform_hist_data(row):
     import numpy as np
 
     figure_data = pd.Series(row['figure_data'])
-    og_median = np.median(figure_data)
+    transformed_data = []
     
-    target_median = row['M_adjusted']
-    modifier = 1 + (target_median - og_median) / og_median
-    transformed_data =  list(figure_data * modifier)
+    if len(figure_data) > 0:
+        og_median = np.median(figure_data)
+        
+        target_median = row['M_adjusted']
+        modifier = 1 + (target_median - og_median) / og_median
+        transformed_data =  list(figure_data * modifier)
     
     return transformed_data
-
 
 def histogram_dist_generation(salary_estimates_raw):
     import pandas as pd
