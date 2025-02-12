@@ -219,7 +219,7 @@ def salary_est(row):
     sample_size = 0
     confidence = 0
     
-    n = 10
+    n = 10 #minimum sample size
     
     if (row['cds_n'] >= n) & (row['job_n'] >= n) & (row['mem_n'] >= n):
             

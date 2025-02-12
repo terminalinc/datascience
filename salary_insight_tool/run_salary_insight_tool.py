@@ -1,12 +1,22 @@
-from src.preprocess.candidates import * 
-from src.preprocess.members import * 
-from src.preprocess.jobs import * 
-from src.preprocess.combo_reference_df import * 
+from src.preprocess.candidates import (id_new_candidate_ids, 
+                                        process_cds_fulltime, 
+                                        process_cds_contract, 
+                                        process_candidate_data)
+from src.preprocess.members import (combine_members_data, 
+                                    predict_mem_role, 
+                                    process_mem_role_prediction, 
+                                    mem_salary_est)
+from src.preprocess.jobs import (process_jobs_data)
+from src.preprocess.combo_reference_df import (region_label, 
+                                               create_salary_combo_df) 
 from src.analytics.skill_analysis import *
 from src.analytics.histogram_dist_generator import *
-from src.prediction.true_salary_estimation import *
-from src.prediction.refine_salary_estimate import *
-from src.prediction.salary_prediction import *
+from src.prediction.true_salary_estimation import (compile_salary_results, 
+                                                   salary_est)
+from src.prediction.refine_salary_estimate import (refine_salary)
+from src.prediction.salary_prediction import (salary_df_gen, 
+                                              global_outlier_range, 
+                                              construct_salary_model)
 
 def run_tool():
     import pandas as pd
