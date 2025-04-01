@@ -42,7 +42,7 @@ def histogram_dist_generation(salary_estimates_raw):
     
     salary_estimates_raw['hist_bin_1'] = (salary_estimates_raw['transformed_data']
                                           .apply(lambda y : len(list(filter(
-                                              lambda x : (x > lb_a) & (x <= lb_b), y)))))
+                                              lambda x : (x <= lb_b), y))))) #(x > lb_a) &
     
     salary_estimates_raw['hist_bin_2'] = (salary_estimates_raw['transformed_data']
                                           .apply(lambda y : len(list(filter(
@@ -70,7 +70,7 @@ def histogram_dist_generation(salary_estimates_raw):
     
     salary_estimates_raw['hist_bin_8'] = (salary_estimates_raw['transformed_data']
                                           .apply(lambda y : len(list(filter(
-                                              lambda x : (x > ub_c) & (x <= ub_d), y)))))
+                                              lambda x : (x > ub_c) , y))))) #& (x <= ub_d)
     
     salary_estimates_raw['total'] = (salary_estimates_raw['cds_n']
                                      + salary_estimates_raw['job_n']
@@ -80,7 +80,7 @@ def histogram_dist_generation(salary_estimates_raw):
                                              'yoe', 'job_level','n', 'confidence', 'M_adjusted', 
                                             'hist_bin_1','hist_bin_2', 'hist_bin_3', 'hist_bin_4', 
                                             'hist_bin_5', 'hist_bin_6','hist_bin_7', 'hist_bin_8']]
+
+    return(salary_estimates)
     
-    salary_estimates.to_csv("data/output/salary_estimates.csv", index = False)
-    print('Salary Estimates Stored: data/output/salary_estimates.csv')
 

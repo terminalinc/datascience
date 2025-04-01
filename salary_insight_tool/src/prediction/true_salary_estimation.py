@@ -76,7 +76,7 @@ def compile_salary_results():
             
             salary_lower_s = bootstrap_s.confidence_interval[0]
             salary_upper_s = bootstrap_s.confidence_interval[1]
-            salary_median_s = (salary_lower_s + salary_upper_s)/2
+            salary_median_s = np.median(bootstrap_s.bootstrap_distribution)
             
             combo_ref_cds_ss.loc[c, 'salary_lower_cds'] = salary_lower_s
             combo_ref_cds_ss.loc[c, 'salary_upper_cds'] = salary_upper_s
@@ -85,6 +85,7 @@ def compile_salary_results():
             
         else:
             combo_ref_cds_ss.loc[c, 'salary_median_cds'] = np.median(s)
+            combo_ref_cds_ss.at[c, 'salary_sample_cds'] = s
     
     
     # Job salary record count
@@ -96,7 +97,7 @@ def compile_salary_results():
     
     combo_ref_df = combo_ref_df.merge(job_combo_count, on = ['country', 'job_level','role', 'yoe', 'employment_type'], how = 'left')
     
-    combo_ref_job_ss = combo_ref_df[combo_ref_df['job_n'] > 5].reset_index(drop=True)
+    combo_ref_job_ss = combo_ref_df[combo_ref_df['job_n'] > 0].reset_index(drop=True)
     combo_ref_job_ss['salary_sample_job'] = ''
     combo_ref_job_ss['salary_sample_job'] = combo_ref_job_ss['salary_sample_job'].astype('object')
 
@@ -122,14 +123,15 @@ def compile_salary_results():
             
             salary_lower_s = bootstrap_s.confidence_interval[0]
             salary_upper_s = bootstrap_s.confidence_interval[1]
-            salary_median_s = (salary_lower_s + salary_upper_s)/2
+            salary_median_s = np.median(bootstrap_s.bootstrap_distribution)
             
             combo_ref_job_ss.loc[c, 'salary_lower_job'] = salary_lower_s
             combo_ref_job_ss.loc[c, 'salary_upper_job'] = salary_upper_s
             combo_ref_job_ss.loc[c, 'salary_median_job'] = salary_median_s
             combo_ref_job_ss.at[c, 'salary_sample_job'] = s#(random.sample(sorted(bootstrap_s.bootstrap_distribution), s_len))
         else:
-            combo_ref_cds_ss.loc[c, 'salary_median_cds'] = np.median(s)
+            combo_ref_job_ss.loc[c, 'salary_median_job'] = np.median(s)
+            combo_ref_job_ss.at[c, 'salary_sample_job'] = s
         
     # member salary record count
     mem_final_df = mem_final_df[(mem_final_df['salary'] > (gor.loc[0, 'global_lower_bound'])) 
@@ -140,7 +142,7 @@ def compile_salary_results():
     
     combo_ref_df = combo_ref_df.merge(mem_combo_count, on = ['country', 'role', 'level', 'employment_type'], how = 'left')
     
-    combo_ref_mem_ss = combo_ref_df[combo_ref_df['mem_n'] > 5].reset_index(drop=True)
+    combo_ref_mem_ss = combo_ref_df[combo_ref_df['mem_n'] > 0].reset_index(drop=True)
     combo_ref_mem_ss['salary_sample_mem'] = ''
     combo_ref_mem_ss['salary_sample_mem'] = combo_ref_mem_ss['salary_sample_mem'].astype('object')
     
@@ -162,14 +164,15 @@ def compile_salary_results():
             
             salary_lower_s = bootstrap_s.confidence_interval[0]
             salary_upper_s = bootstrap_s.confidence_interval[1]
-            salary_median_s = (salary_lower_s + salary_upper_s)/2
+            salary_median_s = np.median(bootstrap_s.bootstrap_distribution)
             
             combo_ref_mem_ss.loc[c, 'salary_lower_mem'] = salary_lower_s
             combo_ref_mem_ss.loc[c, 'salary_upper_mem'] = salary_upper_s
             combo_ref_mem_ss.loc[c, 'salary_median_mem'] = salary_median_s 
             combo_ref_mem_ss.at[c, 'salary_sample_mem'] = s#(random.sample(sorted(bootstrap_s.bootstrap_distribution), s_len))
         else:
-            combo_ref_cds_ss.loc[c, 'salary_median_cds'] = np.median(s)
+            combo_ref_mem_ss.loc[c, 'salary_median_mem'] = np.median(s)
+            combo_ref_mem_ss.at[c, 'salary_sample_mem'] = s
         
     # Combine results   
     combo_ref_df = (combo_ref_df.merge(
@@ -204,6 +207,10 @@ def compile_salary_results():
     combo_ref_df['job_n'] = combo_ref_df['job_n'].fillna(0)
     combo_ref_df['mem_n'] = combo_ref_df['mem_n'].fillna(0)
     
+    combo_ref_df['salary_sample_cds'] = combo_ref_df['salary_sample_cds'].apply(lambda x: x if isinstance(x, list) else [])
+    combo_ref_df['salary_sample_job'] = combo_ref_df['salary_sample_job'].apply(lambda x: x if isinstance(x, list) else [])
+    combo_ref_df['salary_sample_mem'] = combo_ref_df['salary_sample_mem'].apply(lambda x: x if isinstance(x, list) else [])
+    
     return combo_ref_df
 
 #salary_estimates_raw = compile_salary_results()
@@ -221,15 +228,26 @@ def salary_est(row):
     
     n = 10 #minimum sample size
     
+    # Sample consolidation
+    if row['cds_n'] > 0: 
+        new_sample = row['salary_sample_cds']
+        
+    if row['job_n'] > 0: 
+        new_sample = new_sample + row['salary_sample_job']
+        
+    if row['mem_n'] > 0: 
+        new_sample = new_sample + row['salary_sample_mem']
+    
+    # Salary Estimation Logic
     if (row['cds_n'] >= n) & (row['job_n'] >= n) & (row['mem_n'] >= n):
             
-        lower_bound = np.mean([row['salary_lower_cds'], row['salary_lower_job'], row['salary_lower_mem']])
-        upper_bound = np.mean([row['salary_upper_cds'], row['salary_lower_job'], row['salary_upper_mem']])
-        salary_median = np.mean([row['salary_median_cds'], row['salary_median_job'], row['salary_median_mem']])
-        new_sample = (row['salary_sample_cds']
-                         + row['salary_sample_job']
-                         + row['salary_sample_mem'])
-        sample_size = len(new_sample)
+        lower_bound = np.median([row['salary_lower_cds'], row['salary_lower_job'], row['salary_lower_mem']])
+        upper_bound = np.median([row['salary_upper_cds'], row['salary_lower_job'], row['salary_upper_mem']])
+        salary_median = np.median([row['salary_median_cds'], row['salary_median_job'], row['salary_median_mem']])
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 3
 
     elif (row['cds_n'] < n) & (row['job_n'] >= n) & (row['mem_n'] >= n):
@@ -237,9 +255,10 @@ def salary_est(row):
         lower_bound = np.median([row['salary_lower_job'], row['salary_lower_mem']])
         upper_bound = np.median([row['salary_lower_job'], row['salary_upper_mem']])
         salary_median = np.median([row['cds_predictions'], row['salary_median_job'], row['salary_median_mem']])
-        new_sample = (row['salary_sample_job']
-                         + row['salary_sample_mem'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 2
         
     elif (row['cds_n'] < n) & (row['job_n'] < n) & (row['mem_n'] >= n):
@@ -247,8 +266,10 @@ def salary_est(row):
         lower_bound = np.median([ row['salary_lower_mem']])
         upper_bound = np.median([ row['salary_upper_mem']])
         salary_median = np.median([row['cds_predictions'], row['job_predictions'], row['salary_median_mem']])
-        new_sample = (row['salary_sample_mem'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 1
         
     elif (row['cds_n'] < n) & (row['job_n'] < n) & (row['mem_n'] < n):
@@ -257,14 +278,16 @@ def salary_est(row):
         upper_bound = 0
         salary_median = np.median([row['cds_predictions'], row['job_predictions'], row['mem_predictions']])
         
+        
     elif (row['cds_n'] >= n) & (row['job_n'] >= n) & (row['mem_n'] < n):
     
         lower_bound = np.median([row['salary_lower_cds'], row['salary_lower_job']])
         upper_bound = np.median([row['salary_upper_cds'], row['salary_lower_job']])
         salary_median = np.median([row['salary_median_cds'], row['salary_median_job'], row['mem_predictions']])
-        new_sample = (row['salary_sample_cds']
-                         + row['salary_sample_job'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 2
         
     elif (row['cds_n'] >= n) & (row['job_n'] < n) & (row['mem_n'] < n):
@@ -272,8 +295,10 @@ def salary_est(row):
         lower_bound = np.median([row['salary_lower_cds']])
         upper_bound = np.median([row['salary_upper_cds']])
         salary_median = np.median([row['salary_median_cds'], row['job_predictions'], row['mem_predictions']])
-        new_sample = (row['salary_sample_cds'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 1
         
     elif (row['cds_n'] >= n) & (row['job_n'] < n) & (row['mem_n'] >= n):
@@ -281,9 +306,10 @@ def salary_est(row):
         lower_bound = np.median([row['salary_lower_cds'], row['salary_lower_mem']])
         upper_bound = np.median([row['salary_upper_cds'], row['salary_upper_mem']])
         salary_median = np.median([row['salary_median_cds'], row['job_predictions'], row['salary_median_mem']])
-        new_sample = (row['salary_sample_cds']
-                         + row['salary_sample_mem'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 2
         
     elif (row['cds_n'] < n) & (row['job_n'] >= n) & (row['mem_n'] < n):
@@ -291,10 +317,13 @@ def salary_est(row):
         lower_bound = np.median([row['salary_lower_job']])
         upper_bound = np.median([ row['salary_lower_job']])
         salary_median = np.median([row['cds_predictions'], row['salary_median_job'], row['mem_predictions']])
-        new_sample = (row['salary_sample_job'])
-        sample_size = len(new_sample)
+        # new_sample = (row['salary_sample_cds']
+        #                  + row['salary_sample_job']
+        #                  + row['salary_sample_mem'])
+        # sample_size = len(new_sample)
         confidence = 1
 
+    sample_size = len(new_sample)
     return [salary_median, new_sample, sample_size, confidence]                  
    
 #salary_estimates_raw[['L', 'M', 'U', 'figure_data']] = salary_estimates_raw.apply(salary_est, axis = 1, result_type='expand')
